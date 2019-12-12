@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<p></p>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>Cluster subsjects</h1>
+<a href="{{ url_for('scraping.generateTdIdfWEB', id=brandName) }}">Generate tdidfs</a>
+
+<form method="POST">
+<input style="font-size : 30px;height:200px;width:200px" type="submit" name="submit_button" value="1 Theme">
+</form>
+<form method="POST">
+<input style="font-size : 30px;height:200px;width:200px" type="submit" name="submit_button" value="2 Theme">
+</form>
+<form method="POST">
+<input style="font-size : 30px;height:200px;width:200px" type="submit" name="submit_button" value="3 Theme">
+</form>
+<form method="POST">
+<input style="font-size : 30px;height:200px;width:200px" type="submit" name="submit_button" value="4 Theme">
+</form>
+<form method="POST">
+<input style="font-size : 30px;height:200px;width:200px" type="submit" name="submit_button" value="5 Theme">
+</form>
+
+<style>
+#tablefigs {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+
+
+{% if figs %}
+<h1>Subjects</h1> 
+
+<table  id="tablefigs" style="width: 100%"> 
+  <colgroup>
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+    <col style="width: 33%" />
+  </colgroup>
+{% for i in range(figs|length //3+1) %}
+  <tr>
+  {% for j in range(3) %}
+    {% if  i*3 + j < figs|length %}
+    <th><img src="{{url_for('static', filename=figs[i*3 + j])}}"
+      alt="w"
+      height="150">
+    </th>
+    {% endif %}
+  {% endfor %}
+  </tr>
+{% endfor %}
+</table>
+{% endif  %}
+
+<h1>{% block title %}Complains{% endblock %}</h1> 
+
+
+{% for complain in complains %}
+<article class="complain">
+  <header>
+    <div>
+      <h1>{{ complain['brand'] }}</h1>
+      <div class="about">id: {{ complain['idd'] }} about {{ complain['title'] }}</div>
+    </div>
+  </header>
+  <p class="body">{{ complain['fullText'] }}</p>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endblock %}

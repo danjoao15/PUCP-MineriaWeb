@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Scrap Brand{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="brand">Brand</label>
+    <input name="brand" id="brand" required>
+    <label for="startingPage">Starting Page</label>
+    <input name="startingPage" id="startingPage" value=1 required>
+    <label for="numberOfPages">Number of Pages</label>
+    <input name="numberOfPages" id="numberOfPages" value=2 required>
+    <input type="submit" value="scrap brand">
+  </form>
+{% endblock %}

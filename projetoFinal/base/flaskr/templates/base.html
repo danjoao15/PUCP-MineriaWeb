@@ -1,0 +1,19 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Brand Analysis</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1><a href="{{ url_for('index') }}">Brand Analysis</a></h1>
+  <ul>
+      <li><a href="{{ url_for('brand.index') }}">Main Page</a>
+      <li><a href="{{ url_for('scraping.scrapBrand') }}">Load Brand</a>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

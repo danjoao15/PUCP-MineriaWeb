@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Brands{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% if brands %}
+{% for brand in brands %}
+<article class="brand">
+  <header>
+    <a href="{{ url_for('scraping.generateTdIdfWEB', id=brand['brand']) }}">
+      <div>
+        <h1>{{ brand['brand'] }}</h1>
+        <div class="about" >{{ brand['idd'] }} complains: {{ brand['numberOfComplains'] }}
+        </div>
+      </a>
+    </div>
+  </header>
+</article>
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}
